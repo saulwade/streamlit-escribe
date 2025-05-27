@@ -2,6 +2,8 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import altair as alt
+from datetime import time, datetime
+
 
 st.set_page_config(page_title="Ejemplo con st.write", layout="centered")
 
@@ -70,3 +72,24 @@ grafico = alt.Chart(df_grafico).mark_line(point=True).encode(
 st.write(grafico)
 
 
+st.header('🎚️ Ejemplos personalizados con st.slider')
+
+# Slider 1: Edad
+st.subheader('¿Cuál es tu edad?')
+edad = st.slider('Selecciona tu edad:', 0, 100, 25)
+st.write(f"Tienes {edad} años.")
+
+# Slider 2: Calificación de satisfacción
+st.subheader('Nivel de satisfacción (0-10)')
+satisfaccion = st.slider('¿Qué tan satisfecho estás hoy?', 0, 10, 7)
+st.write(f"Nivel seleccionado: {satisfaccion}/10")
+
+# Slider 3: Rango de precios
+st.subheader('Rango de precios')
+rango_precios = st.slider('Selecciona tu rango de precios preferido (MXN):', 100.0, 500.0, (150.0, 300.0))
+st.write(f"Rango seleccionado: ${rango_precios[0]} - ${rango_precios[1]} MXN")
+
+# Slider 4: Horario de ejercicio
+st.subheader('¿A qué hora haces ejercicio?')
+horario = st.slider("Selecciona tu horario de ejercicio:", value=(time(6, 0), time(7, 30)))
+st.write("Tu horario es:", horario)
